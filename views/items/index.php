@@ -7,7 +7,6 @@
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
-use diecoding\barcode\generator\Barcode;
 
 $this->title = 'Items';
 $this->params['breadcrumbs'][] = $this->title;
@@ -58,7 +57,28 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Título', 'id' => 'grid-items-search-biblionumber']
             ],
-        [
+            [
+                'attribute' => 'number',
+                'label'=> 'Ejemplar',
+                'value' => function($model){                   
+                    return $model->biblioitemnumber0->number; 
+                }
+
+            ],
+            [
+                'attribute' => 'volume',
+                'label'=> 'Volumen',
+                'value' => function($model){                   
+                    return $model->biblioitemnumber0->volume; 
+                }
+
+            ],
+            [
+                'attribute' => 'itemcallnumber',
+                'label'=> 'Ubicación',
+                'value' => 'itemcallnumber', 
+            ],
+        /* [
                 'attribute' => 'biblioitemnumber',
                 'label' => 'Biblioitemnumber',
                 'value' => function($model){                   
@@ -70,19 +90,26 @@ $this->registerJs($search);
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Biblioitems', 'id' => 'grid-items-search-biblioitemnumber']
-        ],
-        [
+        ], */
+        /* [
                 'attribute' => 'barcode',
                 'label' => 'Codigo de Barras',
+                'format' => 'raw',
                 'value' => function($model){
                     return Barcode::widget([
-                    'value'  => $model->barcode,
+                    'value'  => $model.'barcode',
                     'format' => Barcode::CODE128A
                     ]);
                 },
-        ],
+        ], */
+        array(
+            'label'=> 'Codigo de Barras',
+            'format' => 'html',
+            'value'=>function($model) { return $model->codebar; },
+            
+            ),
         'barcode',
-        'dateaccessioned',
+        /* 'dateaccessioned',
         'booksellerid:ntext',
         'homebranch',
         'price',
@@ -91,8 +118,28 @@ $this->registerJs($search);
         'datelastborrowed',
         'datelastseen',
         'stack',
-        'notforloan',
-        'damaged',
+        'notforloan', */
+        [
+            'class' => 'kartik\grid\EnumColumn',
+            'attribute' => 'damaged',
+            'label' => 'Estado',
+            'format' => 'html',
+            'enum' => [
+                '0' => '<span class="text-muted">Optimo</span>',
+                '1' => '<span class="text-success">Daño Leve</span>',
+                '2' => '<span class="text-danger">Dañado</span>',
+                '3' => '<span class="text-success">Muy Dañado</span>',
+                '4' => '<span class="text-danger">De Baja</span>',
+            ],
+            'filter' => [  // will override the grid column filter (i.e. `loadEnumAsFilter` will be parsed as `false`)
+                '0' => 'Optimo',
+                '1' => 'Daño Leve',
+                '2' => 'Dañado',
+                '3' => 'Muy Dañado',
+                '4' => 'De Baja',
+            ],
+        ],
+        /*'damaged',
         'damaged_on',
         'itemlost',
         'itemlost_on',
@@ -123,9 +170,10 @@ $this->registerJs($search);
         'copynumber',
         'stocknumber',
         'new_status',
-        'exclude_from_local_holds_priority',
+        'exclude_from_local_holds_priority', */
         [
             'class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update}',
         ],
     ]; 
     ?>

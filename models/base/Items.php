@@ -3,7 +3,9 @@
 namespace app\models\base;
 
 use Yii;
+use yii\helpers\Html;
 use mootensai\behaviors\UUIDBehavior;
+use diecoding\barcode\generator\Barcode;
 
 /**
  * This is the base model class for table "items".
@@ -163,7 +165,7 @@ class Items extends \yii\db\ActiveRecord
      */
     public function getBiblioitemnumber0()
     {
-        return $this->hasOne(\app\models\Biblioitems::className(), ['biblioitemnumber' => 'biblioitemnumber']);
+        return $this->hasOne(\app\models\BiblioItems::className(), ['biblioitemnumber' => 'biblioitemnumber']);
     }
         
     /**
@@ -197,4 +199,11 @@ class Items extends \yii\db\ActiveRecord
     {
         return new \app\models\ItemsQuery(get_called_class());
     }
+
+     public function getCodebar()
+{
+    return Html::img(Barcode::widget(['value' => '1234','format' => Barcode::CODE128]));
+}
+
+
 }
