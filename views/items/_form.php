@@ -15,11 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->errorSummary($model); ?>
 
-    <?= $form->field($model, 'itemnumber')->textInput(['placeholder' => 'Itemnumber']) ?>
+    <!-- <?= $form->field($model, 'itemnumber')->textInput(['placeholder' => 'Itemnumber']) ?> -->
 
-    <?= $form->field($model, 'biblionumber')->widget(\kartik\widgets\Select2::classname(), [
+    <?= $form->field($model, 'biblionumber')->label('Título')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Biblio::find()->orderBy('biblionumber')->asArray()->all(), 'biblionumber', 'title'),
-        'options' => ['placeholder' => 'Choose Biblio'],
+        'options' => ['placeholder' => 'Ingrese el título'],
         'pluginOptions' => [
             'allowClear' => true
         ],
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'barcode')->textInput(['maxlength' => true, 'placeholder' => 'Barcode']) ?>
 
-    <?= $form->field($model, 'dateaccessioned')->widget(\kartik\datecontrol\DateControl::classname(), [
+    <!-- <?= $form->field($model, 'dateaccessioned')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
         'saveFormat' => 'php:Y-m-d',
         'ajaxConversion' => true,
@@ -45,9 +45,9 @@ use yii\widgets\ActiveForm;
                 'autoclose' => true
             ]
         ],
-    ]); ?>
+    ]); ?> -->
 
-    <?= $form->field($model, 'booksellerid')->textarea(['rows' => 6]) ?>
+    <!-- <?= $form->field($model, 'booksellerid')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'homebranch')->textInput(['maxlength' => true, 'placeholder' => 'Homebranch']) ?>
 
@@ -93,11 +93,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stack')->checkbox() ?>
 
-    <?= $form->field($model, 'notforloan')->checkbox() ?>
+    <?= $form->field($model, 'notforloan')->checkbox() ?> -->
 
-    <?= $form->field($model, 'damaged')->checkbox() ?>
+    <?= $form->field($model, 'damaged')->dropdownList([
+        0 => 'Excelente',
+        1 => 'Bueno',
+        2 => 'Aceptable',
+        3 => 'Regular',
+        4 => 'Malo',
+        5 => 'Pésimo',
+        ],
+    ['prompt'=>'Seleccione un estado']
+); ?>
 
-    <?= $form->field($model, 'damaged_on')->widget(\kartik\datecontrol\DateControl::classname(), [
+    <!-- <?= $form->field($model, 'damaged_on')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
         'saveFormat' => 'php:Y-m-d H:i:s',
         'ajaxConversion' => true,
@@ -107,9 +116,9 @@ use yii\widgets\ActiveForm;
                 'autoclose' => true,
             ]
         ],
-    ]); ?>
+    ]); ?> -->
 
-    <?= $form->field($model, 'itemlost')->checkbox() ?>
+    <!-- <?= $form->field($model, 'itemlost')->checkbox() ?>
 
     <?= $form->field($model, 'itemlost_on')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
@@ -135,11 +144,11 @@ use yii\widgets\ActiveForm;
                 'autoclose' => true,
             ]
         ],
-    ]); ?>
+    ]); ?> -->
 
     <?= $form->field($model, 'itemcallnumber')->textInput(['maxlength' => true, 'placeholder' => 'Itemcallnumber']) ?>
 
-    <?= $form->field($model, 'coded_location_qualifier')->textInput(['maxlength' => true, 'placeholder' => 'Coded Location Qualifier']) ?>
+   <!--  <?= $form->field($model, 'coded_location_qualifier')->textInput(['maxlength' => true, 'placeholder' => 'Coded Location Qualifier']) ?>
 
     <?= $form->field($model, 'issues')->textInput(['placeholder' => 'Issues']) ?>
 
@@ -150,10 +159,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'restricted')->checkbox() ?>
 
     <?= $form->field($model, 'itemnotes')->textarea(['rows' => 6]) ?>
-
+ -->
     <?= $form->field($model, 'itemnotes_nonpublic')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'holdingbranch')->textInput(['maxlength' => true, 'placeholder' => 'Holdingbranch']) ?>
+ <!--    <?= $form->field($model, 'holdingbranch')->textInput(['maxlength' => true, 'placeholder' => 'Holdingbranch']) ?>
 
     <?= $form->field($model, 'timestamp')->textInput(['placeholder' => 'Timestamp']) ?>
 
@@ -204,11 +213,11 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'copynumber')->textInput(['maxlength' => true, 'placeholder' => 'Copynumber']) ?>
 
     <?= $form->field($model, 'stocknumber')->textInput(['maxlength' => true, 'placeholder' => 'Stocknumber']) ?>
-
+ -->
     <?= $form->field($model, 'new_status')->textInput(['maxlength' => true, 'placeholder' => 'New Status']) ?>
-
+<!-- 
     <?= $form->field($model, 'exclude_from_local_holds_priority')->checkbox() ?>
-
+ -->
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>

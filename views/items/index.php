@@ -43,7 +43,19 @@ $this->registerJs($search);
             'headerOptions' => ['class' => 'kartik-sheet-style'],
             'expandOneOnly' => true
         ],
-        'itemnumber',
+        [
+            'attribute' => 'new_status',
+            'label' => 'Nro de Obra',
+            'value' => 'new_status',
+            /* 'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Biblio::find()->asArray()->all(), 'biblionumber', 'new_status'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Nro de Obra', 'id' => 'grid-items-search-bibliostatus']
+             */
+        ],
+        //'itemnumber',
         [
                 'attribute' => 'biblionumber',
                 'label' => 'Título',
@@ -89,7 +101,7 @@ $this->registerJs($search);
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Biblioitems', 'id' => 'grid-items-search-biblioitemnumber']
+                'filterInputOptions' => ['placeholder' => 'Biblioitems', $generator->getBarcode('081231723897', $generator::TYPE_CODE_128);'id' => 'grid-items-search-biblioitemnumber']
         ], */
         /* [
                 'attribute' => 'barcode',
@@ -102,12 +114,6 @@ $this->registerJs($search);
                     ]);
                 },
         ], */
-        array(
-            'label'=> 'Codigo de Barras',
-            'format' => 'html',
-            'value'=>function($model) { return $model->codebar; },
-            
-            ),
         'barcode',
         /* 'dateaccessioned',
         'booksellerid:ntext',
@@ -125,18 +131,21 @@ $this->registerJs($search);
             'label' => 'Estado',
             'format' => 'html',
             'enum' => [
-                '0' => '<span class="text-muted">Optimo</span>',
-                '1' => '<span class="text-success">Daño Leve</span>',
-                '2' => '<span class="text-danger">Dañado</span>',
-                '3' => '<span class="text-success">Muy Dañado</span>',
-                '4' => '<span class="text-danger">De Baja</span>',
+                '0' => '<span class="text-muted">Excelente</span>',
+                '1' => '<span class="text-success">Bueno</span>',
+                '2' => '<span class="text-danger">Aceptable</span>',
+                '3' => '<span class="text-success">Regular</span>',
+                '4' => '<span class="text-danger">Malo</span>',
+                '5' => '<span class="text-danger">Pésimo</span>',
             ],
             'filter' => [  // will override the grid column filter (i.e. `loadEnumAsFilter` will be parsed as `false`)
-                '0' => 'Optimo',
-                '1' => 'Daño Leve',
-                '2' => 'Dañado',
-                '3' => 'Muy Dañado',
-                '4' => 'De Baja',
+                '0' => 'Excelente',
+                '1' => 'Bueno',
+                '2' => 'Aceptable',
+                '3' => 'Regular',
+                '4' => 'Malo',
+                '5' => 'Pésimo',
+
             ],
         ],
         /*'damaged',

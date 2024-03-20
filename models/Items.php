@@ -38,9 +38,9 @@ class Items extends BaseItems
     {
         return [
             'itemnumber' => 'Itemnumber',
-            'biblionumber' => 'Biblionumber',
+            'biblionumber' => 'Título',
             'biblioitemnumber' => 'Biblioitemnumber',
-            'barcode' => 'Barcode',
+            'barcode' => 'Codigo de Barras',
             'dateaccessioned' => 'Dateaccessioned',
             'booksellerid' => 'Booksellerid',
             'homebranch' => 'Homebranch',
@@ -51,7 +51,7 @@ class Items extends BaseItems
             'datelastseen' => 'Datelastseen',
             'stack' => 'Stack',
             'notforloan' => 'Notforloan',
-            'damaged' => 'Damaged',
+            'damaged' => 'Estado',
             'damaged_on' => 'Damaged On',
             'itemlost' => 'Itemlost',
             'itemlost_on' => 'Itemlost On',
@@ -64,7 +64,7 @@ class Items extends BaseItems
             'reserves' => 'Reserves',
             'restricted' => 'Restricted',
             'itemnotes' => 'Itemnotes',
-            'itemnotes_nonpublic' => 'Itemnotes Nonpublic',
+            'itemnotes_nonpublic' => 'Notas Privadas',
             'holdingbranch' => 'Holdingbranch',
             'timestamp' => 'Timestamp',
             'deleted_on' => 'Deleted On',
@@ -81,7 +81,7 @@ class Items extends BaseItems
             'enumchron' => 'Enumchron',
             'copynumber' => 'Copynumber',
             'stocknumber' => 'Stocknumber',
-            'new_status' => 'New Status',
+            'new_status' => 'Nro de Obra',
             'exclude_from_local_holds_priority' => 'Exclude From Local Holds Priority',
         ];
     }
