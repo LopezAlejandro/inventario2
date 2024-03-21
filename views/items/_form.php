@@ -1,8 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-
+//use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
+use kartik\form\ActiveField;
 /* @var $this yii\web\View */
 /* @var $model app\models\Items */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,23 +18,58 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'itemnumber')->textInput(['placeholder' => 'Itemnumber']) ?> -->
 
+    <?= $form->field($model, 'new_status')->label('Nro de Obra')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+
     <?= $form->field($model, 'biblionumber')->label('Título')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Biblio::find()->orderBy('biblionumber')->asArray()->all(), 'biblionumber', 'title'),
+        'disabled' => true,
         'options' => ['placeholder' => 'Ingrese el título'],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
-
-    <?= $form->field($model, 'biblioitemnumber')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\BiblioItems::find()->orderBy('biblioitemnumber')->asArray()->all(), 'biblioitemnumber', 'biblioitemnumber'),
+    
+    <?= $form->field($model, 'biblioitemnumber',
+    [
+        'hintType' => ActiveField::HINT_SPECIAL,
+        'hintSettings' => [
+            'iconBesideInput' => true,
+            'onLabelClick' => false,
+            'onLabelHover' => false,
+            'onIconClick' => true,
+            'onIconHover' => true,
+            'title' => '<i class="fas fa-info-sign"></i> Note'
+        ]
+    ])->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\BiblioItems::find()->orderBy('biblioitemnumber')->asArray()->all(), 'biblioitemnumber', 'number'),
         'options' => ['placeholder' => 'Choose Biblioitems'],
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
 
-    <?= $form->field($model, 'barcode')->textInput(['maxlength' => true, 'placeholder' => 'Barcode']) ?>
+    <?= $form->field($model, 'biblioitemnumber',
+    [
+        'hintType' => ActiveField::HINT_SPECIAL,
+        'hintSettings' => [
+            'iconBesideInput' => true,
+            'onLabelClick' => false,
+            'onLabelHover' => false,
+            'onIconClick' => true,
+            'onIconHover' => true,
+            'title' => '<i class="fas fa-info-sign"></i> Note'
+        ]
+    ])->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\BiblioItems::find()->orderBy('biblioitemnumber')->asArray()->all(), 'biblioitemnumber', 'volume'),
+        'options' => ['placeholder' => 'Choose Biblioitems'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
+    <!--  -->
+<?= $form->field($model, 'itemcallnumber')->label('Ubicación')->textInput(['maxlength' => true, 'placeholder' => 'Ubicación']) ?>
+    <?= $form->field($model, 'barcode')->label('Codigo de Barras')->textInput(['maxlength' => true, 'placeholder' => 'Barcode']) ?>
 
     <!-- <?= $form->field($model, 'dateaccessioned')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
@@ -146,7 +182,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?> -->
 
-    <?= $form->field($model, 'itemcallnumber')->textInput(['maxlength' => true, 'placeholder' => 'Itemcallnumber']) ?>
+    
 
    <!--  <?= $form->field($model, 'coded_location_qualifier')->textInput(['maxlength' => true, 'placeholder' => 'Coded Location Qualifier']) ?>
 
@@ -214,7 +250,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stocknumber')->textInput(['maxlength' => true, 'placeholder' => 'Stocknumber']) ?>
  -->
-    <?= $form->field($model, 'new_status')->textInput(['maxlength' => true, 'placeholder' => 'New Status']) ?>
+    
 <!-- 
     <?= $form->field($model, 'exclude_from_local_holds_priority')->checkbox() ?>
  -->

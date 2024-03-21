@@ -200,7 +200,7 @@ class Items extends \yii\db\ActiveRecord
         return new \app\models\ItemsQuery(get_called_class());
     }
 
-     public function getCodebar()
+    public function getCodebar()
 {
     return Html::img(Barcode::widget(['value' => '1234','format' => Barcode::CODE128]));
 }
