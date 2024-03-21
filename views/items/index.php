@@ -131,10 +131,10 @@ $this->registerJs($search);
             'label' => 'Estado',
             'format' => 'html',
             'enum' => [
-                '0' => '<span class="text-muted">Excelente</span>',
+                '0' => '<span class="text-success">Excelente</span>',
                 '1' => '<span class="text-success">Bueno</span>',
-                '2' => '<span class="text-danger">Aceptable</span>',
-                '3' => '<span class="text-success">Regular</span>',
+                '2' => '<span class="text-warning">Aceptable</span>',
+                '3' => '<span class="text-warning">Regular</span>',
                 '4' => '<span class="text-danger">Malo</span>',
                 '5' => '<span class="text-danger">Pésimo</span>',
             ],
